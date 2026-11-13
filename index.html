@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastUzbek - Mazali Fast Fud va Pitsa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Fast<span>Uzbek</span></div>
+        <nav>
+            <a href="#home">Asosiy</a>
+            <a href="#menu">Menyu</a>
+            <button id="cart-btn" class="cart-btn">🛒 Savatcha (<span id="cart-count">0</span>)</button>
+        </nav>
+    </header>
+
+    <!-- Hero Bo'limi -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Mazali Pitsa va Fast Fudlar</h1>
+            <p>O'zingiz yoqtirgan taomni tanlang va savatchaga qo'shing!</p>
+            <a href="#menu" class="btn">Menyuni ko'rish</a>
+        </div>
+    </section>
+
+    <!-- Menyu Bo'limi -->
+    <section id="menu" class="menu-section">
+        <h2>Bizning Menyu</h2>
+
+        <!-- Kategoriya Tugmalari -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">🔥 Barchasi</button>
+            <button class="filter-btn" data-filter="pizza">🍕 Pitsalar</button>
+            <button class="filter-btn" data-filter="burger">🍔 Burgerlar</button>
+            <button class="filter-btn" data-filter="lavash">🌯 Lavash & Hot-Dog</button>
+            <button class="filter-btn" data-filter="drink">🥤 Ichimliklar</button>
+        </div>
+
+        <!-- Mahsulotlar Grid -->
+        <div class="menu-grid">
+            
+            <div class="menu-card" data-category="pizza">
+<img cover src="./pepperoni.webp" alt="">                <h3>Pepperoni Pitsa</h3>
+                <p>Mozzarella pishloqi, kalbasa, pomidor sousi.</p>
+                <div class="card-footer">
+                    <span class="price" data-price="75000">75,000 so'm</span>
+                    <button class="order-btn" onclick="addToCart('Pepperoni Pitsa', 75000)">Qo'shish</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="pizza">
+                <img cover src="./rasm.webp " alt="">
+                <h3>Margarita Pitsa</h3>
+                <p>Ikki qavat pishloq, bazilik ko'kati va maxsus sous.</p>
+                <div class="card-footer">
+                    <span class="price" data-price="65000">65,000 so'm</span>
+                    <button class="order-btn" onclick="addToCart('Margarita Pitsa', 65000)">Qo'shish</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="burger">
+                                <img cover src="./cheeseburger.webp " alt="">
+                <h3>Cheeseburger</h3>
+                <p>Mol go'shti kotleti, cheddar pishloqi, maxsus sous.</p>
+                <div class="card-footer">
+                    <span class="price" data-price="38000">38,000 so'm</span>
+                    <button class="order-btn" onclick="addToCart('Cheeseburger', 38000)">Qo'shish</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="burger">
+                <img cover src="./bar.jpg " alt="">
+                <h3>Double Burger</h3>
+                <p>Ikki karra go'sht, ikkita pishloq, bodring tuzlamasi.</p>
+                <div class="card-footer">
+                    <span class="price" data-price="50000">50,000 so'm</span>
+                    <button class="order-btn" onclick="addToCart('Double Burger', 50000)">Qo'shish</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="lavash">
+                <img cover src="./tuvuqli.jpg " alt="">
+                <h3>Tovuqli Lavash</h3>
+                <p>Tovuq go'shti, maxsus sous, chipslar va pomidor.</p>
+                <div class="card-footer">
+                    <span class="price" data-price="32000">32,000 so'm</span>
+                    <button class="order-btn" onclick="addToCart('Tovuqli Lavash', 32000)">Qo'shish</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="lavash">
+                <img cover src="./king hot.webp " alt="">
+                <h3>King Hot-Dog</h3>
+                <p>Katta sosiska, koreyscha sabzi, mayonez va ketchup.</p>
+                <div class="card-footer">
+                    <span class="price" data-price="20000">20,000 so'm</span>
+                    <button class="order-btn" onclick="addToCart('King Hot-Dog', 20000)">Qo'shish</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="drink">
+                <img cover src="./coca cola.jpg " alt="">
+                <h3>Coca-Cola (1L)</h3>
+                <p>Muzdek salqin gazli ichimlik.</p>
+                <div class="card-footer">
+                    <span class="price" data-price="12000">12,000 so'm</span>
+                    <button class="order-btn" onclick="addToCart('Coca-Cola (1L)', 12000)">Qo'shish</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Savatcha Modali (Oyna) -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Sizning Buyurtmangiz</h2>
+            <div id="cart-items-list">
+                <p class="empty-cart">Savatchangiz bo'sh</p>
+            </div>
+            <div class="cart-total">
+                <h3>Jami: <span id="total-price">0</span> so'm</h3>
+            </div>
+            
+            <!-- Ma'lumot kiritish formasi -->
+            <div class="checkout-form">
+                <input type="text" id="customer-name" placeholder="Ismingizni kiriting..." required>
+                <input type="text" id="customer-phone" placeholder="Telefon raqamingiz..." required>
+                <input type="text" id="customer-address" placeholder="Yetkazib berish manzili..." required>
+                <button id="submit-order" class="submit-btn">Buyurtmani Tasdiqlash</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 FastUzbek. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
